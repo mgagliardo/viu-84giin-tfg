@@ -19,6 +19,28 @@ Installing and running is as easy as:
 % exec gunicorn -b :5000 --access-logfile - --error-logfile - microblog:app
 ```
 
+### Using docker
+
+- To build the docker image and running it locally:
+
+```shell
+% docker build -t microblog:latest .
+% docker run -ti --rm -p 5000:5000 microblog:latest
+```
+
+- Alternatively you can also run it with docker compose. Building the container and running it on the same command:
+
+```shell
+% docker compose up -d --build --remove-orphans
+```
+
+### Testing the app
+
+Visit `http://localhost:5000`
+
+![](../docs/img/login.png)
+
+
 ## Environment Variables
 
 The following environment variables can be set or be taken as default for development, testing or remote deployment.

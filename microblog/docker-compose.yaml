@@ -1,0 +1,32 @@
+---
+services:
+
+  db:
+    image: postgres:17-alpine
+    restart: on-failure
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      - POSTGRES_DB=microblog
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  microblog:
+    image: microblog
+    build:
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/microblog
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:stable-alpine
+    restart: on-failure
+    volumes:
+      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 8080:80
+    depends_on:
+      - microblog
