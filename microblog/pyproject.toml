@@ -1,0 +1,9 @@
+[project]
+name = "microblog"
+version = "0.1.0"
+description = "Microblog App"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "black>=25.1.0",
+]
