@@ -1,43 +1,45 @@
-# Microblog Terraform
+# Microblog Terraform Repo
 
-## Requirements
+![](../docs/img/infra-diagram.png)
+
+## Requisitos
 
 - Terraform >= v1.5.7
-- Docker or equivalent (e.g. finch, podman)
+- Docker o equivalente (por ejemplo: finch, podman)
 
-## Notes
+## Notas
 
-- This repository requires the `microblog-tfstate` bucket to exist in order to save the terraform's tfstate file. Change accordingly to your needs [here](./tfstate.tf#L5)
+- Este repositorio requiere que exista el bucket `microblog-tfstate` para guardar el archivo tfstate de terraform. Cámbialo según tus necesidades [aquí](./tfstate.tf#L5), bien puedes comentar ese archivo o removerlo y el tfstate será guardado localmente
 
-## What to expect from this repo
+## Qué esperar de este repositorio
 
-The repo has the code to:
-- Build the container image for the [microblog](../microblog/) locally
-- Push it to an ECR private repo
-- Create an ALB (HTTP/80 port only) open to the world
-- An RDS (PostgreSQL) instance
-- ECS infrastructure (task, service, IAM role)
-- Create a Route53 private zone with a record pointing to the RDS instance
-- A secretsmanager k/v which holds the Database URL for the microblog app to connect to
-- All network infrastructure with all security groups properly managed
+El repositorio contiene el código para:
+- Construir la imagen del contenedor de [microblog](../microblog/) localmente
+- Subirla a un repositorio privado ECR
+- Crear un ALB (solo puerto HTTP/80) abierto al mundo
+- Una instancia RDS (PostgreSQL)
+- Infraestructura ECS (task definition, service, IAM role)
+- Crear una zona privada en Route53 con un registro apuntando a la instancia de RDS
+- Un k/v de secretsmanager que contiene la URL de la base de datos para que la app microblog se conecte
+- Toda la infraestructura de red con todos los grupos de seguridad gestionados correctamente
 
-## How to run this
+## Cómo ejecutar esto
 
-1. Ensure you have either exported the right environment variables or you have configured your AWS credentials
-1. Then just run:
+1. Asegúrate de haber exportado las variables de entorno adecuadas o haber configurado tus credenciales de AWS
+1. Luego simplemente ejecuta:
 
 ```
 % terraform init
 % terraform apply -var-file=prod.tfvars
 ```
 
-And to delete everything of course, run:
+Y para eliminar todo, simplemente:
 
 ```
 % terraform destroy -var-file=prod.tfvars
 ```
 
-To `force a container rebuild` which will recreate a new docker image and thus a new task definition, you may use:
+Para `forzar un rebuild del contenedor`, lo cual recreará una nueva imagen de docker y por tanto una nueva task definition, puedes usar:
 
 ```
 % terraform apply -var-file=prod.tfvars -var=force_image_rebuild=true
