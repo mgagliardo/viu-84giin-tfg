@@ -1,66 +1,64 @@
 ## MicroBlog App
 
-## Requirements
+## Requerimientos
 
 - Python >= 3.9
 
-## Installing
+## Instalación
 
-### Local Environment
+### Entorno local
 
-Installing and running is as easy as:
+Para instalar y ejecutar esto:
 
 ```shell
-# Install required libraries
 % pip install -r requirements.txt
-# Create DB
 % flask db upgrade
-# Run the app
 % exec gunicorn -b :5000 --access-logfile - --error-logfile - microblog:app
 ```
 
-### Using docker
+### Vía docker
 
-- To build the docker image and running it locally:
+- Para hacer el build de la imagen de docker y ejecutarlo localmente:
 
 ```shell
 % docker build -t microblog:latest .
 % docker run -ti --rm -p 5000:5000 microblog:latest
 ```
 
-- Alternatively you can also run it with docker compose. Building the container and running it on the same command:
+- Alternativamente, se puede usar docker compose:
 
 ```shell
 % docker compose up -d --build --remove-orphans
 ```
 
-### Testing the app
+### Testing de la app
 
-Visit `http://localhost:5000`
+Mientras la app se está ejecutando, ir a `http://localhost:5000`
 
 ![](../docs/img/login.png)
 
 
-## Environment Variables
+## Variables de entorno
 
-The following environment variables can be set or be taken as default for development, testing or remote deployment.
+Las siguientes variables de entorno pueden establecerse o tomarse como predeterminadas para dev o testing o bien para deploys remotos.
 
-| Environment Variable     | Mandatory | Default Value                    | Notes                                                              |
-|--------------------------|-----------|----------------------------------|--------------------------------------------------------------------|
-| SECRET_KEY               | No        | `"you-will-never-guess"`         | Used for session security                                          |
-| SERVER_NAME              | No        | `None`                           | Flask server name                                                  |
-| DATABASE_URL             | No        | `"sqlite:///<basedir>/app.db"`   | External DB setup. Only PostgreSQL is available                    |
-| LOG_TO_STDOUT            | No        | `None`                           | Enables logging to stdout (useful for debugging)                   |
-| MAIL_SERVER              | No        | `None`                           | SMTP server address                                                |
-| MAIL_PORT                | No        | `25`                             | SMTP server port                                                   |
-| MAIL_USE_TLS             | No        | `False`                          | Use TLS for email                                                  |
-| MAIL_USERNAME            | No        | `None`                           | SMTP username                                                      |
-| MAIL_PASSWORD            | No        | `None`                           | SMTP password                                                      |
-| MS_TRANSLATOR_KEY        | No        | `None`                           | Microsoft Translator API key (required for es/en live translation) |
-| ELASTICSEARCH_URL        | No        | `None`                           | Elasticsearch server URL. Required for search indexing             |
-| REDIS_URL                | No        | `"redis://"`                     | Redis connection URL. Required for Async Tasks                     |
-| MAX_POSTS                | No        | `25`                             | Number of posts per page                                           |
 
-## Disclaimer
+| Variable de Entorno       | Obligatoria | Valor Predeterminado             | Notas                                                               |
+|---------------------------|-------------|----------------------------------|---------------------------------------------------------------------|
+| SECRET_KEY                | No          | `"you-will-never-guess"`         | Usada para la seguridad de la sesión                                |
+| SERVER_NAME               | No          | `None`                           | Nombre del servidor Flask                                           |
+| DATABASE_URL              | No          | `"sqlite:///<basedir>/app.db"`   | Configuración de base de datos externa. Solo está disponible PostgreSQL |
+| LOG_TO_STDOUT             | No          | `None`                           | Habilita el registro en stdout (útil para depuración)              |
+| MAIL_SERVER               | No          | `None`                           | Dirección del servidor SMTP                                         |
+| MAIL_PORT                 | No          | `25`                             | Puerto del servidor SMTP                                            |
+| MAIL_USE_TLS              | No          | `False`                          | Usar TLS para correo electrónico                                    |
+| MAIL_USERNAME             | No          | `None`                           | Nombre de usuario SMTP                                              |
+| MAIL_PASSWORD             | No          | `None`                           | Contraseña SMTP                                                     |
+| MS_TRANSLATOR_KEY         | No          | `None`                           | Clave de API de Microsoft Translator (requerida para traducción en vivo es/en) |
+| ELASTICSEARCH_URL         | No          | `None`                           | URL del servidor Elasticsearch. Requerida para indexación de búsqueda |
+| REDIS_URL                 | No          | `"redis://"`                     | URL de conexión a Redis. Requerida para Tareas Asíncronas           |
+| MAX_POSTS                 | No          | `25`                             | Número de publicaciones por página                                 |
 
-Part of the idea of this app was taken from [Miguel Grinberg's Flask Mega-Tutorial Course](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). All credits to him
+## Descargo de responsabilidad
+
+Parte de la idea de esta aplicación fue tomada del [Curso Flask Mega-Tutorial de Miguel Grinberg](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). Todos los créditos para el mismo.
