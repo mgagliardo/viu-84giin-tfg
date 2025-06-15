@@ -1,6 +1,6 @@
 
 resource "aws_secretsmanager_secret" "db_secret" {
-  name                    = "${var.environment}/${var.service}/microblog"
+  name_prefix             = "${var.environment}/${var.service}/microblog-"
   description             = "Database credentials for ${var.environment}-${var.service} DB"
   recovery_window_in_days = 0
 }
