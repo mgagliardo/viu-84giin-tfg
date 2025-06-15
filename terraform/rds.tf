@@ -8,7 +8,8 @@ module "microblog_db" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 6.12.0"
 
-  identifier = "${var.environment}-${var.service}-db"
+  identifier                     = "${var.environment}-${var.service}-db"
+  instance_use_identifier_prefix = true
 
   engine         = "postgres"
   engine_version = "16.6"

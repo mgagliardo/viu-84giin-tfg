@@ -86,4 +86,4 @@ Las 6 grandes entidades como se pueden ver son:
 - **Post:** Un posteo, esto es, una entrada en el blog.
 - **Follower:** Tabla intermedia para relacion `M:N` entre usuarios como followers (similar al concepto de twitter o instagram).
 
-![](./img/microblog-db.png)
+![](./img/diagrama-erd.png)

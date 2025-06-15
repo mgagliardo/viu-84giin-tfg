@@ -1,6 +1,6 @@
 # Microblog Terraform Repo
 
-![](../docs/img/infra-diagram.png)
+![](../docs/img/diagrama-de-infraestructura.png)
 
 ## Requisitos
 
