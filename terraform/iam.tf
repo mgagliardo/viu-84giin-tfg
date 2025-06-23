@@ -20,7 +20,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy_attach
 }
 
 resource "aws_iam_policy" "secrets_access_policy" {
-  name        = "SecretsAccessPolicy"
+  name_prefix = "SecretsAccessPolicy-"
   description = "Allow access to specific secrets for ECS tasks"
 
   policy = jsonencode({
