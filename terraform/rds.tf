@@ -1,7 +1,7 @@
 resource "random_password" "db" {
   length           = 16
   special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  override_special = "!#$&*()-_=+[]{}<>:?"
 }
 
 module "microblog_db" {
@@ -30,7 +30,7 @@ module "microblog_db" {
   password                    = random_password.db.result
   
   apply_immediately                   = true
-  # deletion_protection                 = false
+  deletion_protection                 = false
   iam_database_authentication_enabled = false
   enabled_cloudwatch_logs_exports = []
 
