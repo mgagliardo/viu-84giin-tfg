@@ -30,7 +30,7 @@ module "microblog_db" {
   password                    = random_password.db.result
   
   apply_immediately                   = true
-  # deletion_protection                 = false
+  deletion_protection                 = false
   iam_database_authentication_enabled = false
   enabled_cloudwatch_logs_exports = []
 
